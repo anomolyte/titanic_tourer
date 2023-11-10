@@ -1,3 +1,4 @@
 res://player/player.tscn
 res://scenes/game.tscn
 res://scenes/environment/water_shader.gdshader
+res://player/player.gd

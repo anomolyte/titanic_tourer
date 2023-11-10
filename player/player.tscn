@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dex42s4rxu2ob"]
+[gd_scene load_steps=4 format=3 uid="uid://dex42s4rxu2ob"]
 
 [ext_resource type="Texture2D" uid="uid://cbj8rgoy1s3ot" path="res://player/titan_sub.png" id="1_jbgqd"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_p7vmu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pgef2"]
 size = Vector2(21, 6)
 
 [node name="Player" type="Area2D"]
+script = ExtResource("1_p7vmu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_jbgqd")
