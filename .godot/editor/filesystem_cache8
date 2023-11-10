@@ -1,8 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1699581124
+::res://::1699634294
 icon.svg::CompressedTexture2D::5513293346966876813::1699579998::1699580008::1::::<><>::
-::res://player/::1699581026
+::res://player/::1699634294
 player.tscn::PackedScene::7489308114224053561::1699581026::0::1::::<><>::
+titan_sub.png::CompressedTexture2D::4863643967961746959::1699634279::1699634294::1::::<><>::
 ::res://scenes/::1699581055
 game.tscn::PackedScene::5622876351677142963::1699581055::0::1::::<><>::
-::res://scenes/environment/::1699580869
+::res://scenes/environment/::1699634294
