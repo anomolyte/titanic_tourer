@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmd07mrnl05kp"]
+[gd_scene load_steps=10 format=3 uid="uid://cmd07mrnl05kp"]
 
 [ext_resource type="PackedScene" uid="uid://dex42s4rxu2ob" path="res://player/player.tscn" id="1_bdfjf"]
 [ext_resource type="Script" path="res://scenes/game/camera.gd" id="1_wvq00"]
 [ext_resource type="Shader" path="res://scenes/environment/water_shader.gdshader" id="2_xfp7b"]
+[ext_resource type="Texture2D" uid="uid://83umcs14t1y7" path="res://scenes/environment/shipwreck_ground/titanic_wreck.png" id="4_lng1w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2kl2y"]
 shader = ExtResource("2_xfp7b")
@@ -52,3 +53,8 @@ material = SubResource("ShaderMaterial_2kl2y")
 position = Vector2(480, 982.115)
 mesh = SubResource("QuadMesh_3rcvi")
 texture = SubResource("GradientTexture2D_b621d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment"]
+modulate = Color(0.407843, 0.407843, 0.407843, 1)
+position = Vector2(480, 1642)
+texture = ExtResource("4_lng1w")
