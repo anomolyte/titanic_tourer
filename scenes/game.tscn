@@ -16,11 +16,12 @@ subdivide_width = 12
 subdivide_depth = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_3rcvi"]
-size = Vector2(1000, 800)
+size = Vector2(1000, 1500)
 subdivide_width = 12
 subdivide_depth = 2
 
 [sub_resource type="Gradient" id="Gradient_k8na2"]
+offsets = PackedFloat32Array(0.477419, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_b621d"]
 gradient = SubResource("Gradient_k8na2")
@@ -48,6 +49,6 @@ mesh = SubResource("QuadMesh_dfnhm")
 modulate = Color(0.192157, 0.352941, 0.380392, 1)
 z_index = -12
 material = SubResource("ShaderMaterial_2kl2y")
-position = Vector2(480, 633)
+position = Vector2(480, 982.115)
 mesh = SubResource("QuadMesh_3rcvi")
 texture = SubResource("GradientTexture2D_b621d")

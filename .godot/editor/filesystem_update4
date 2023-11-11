@@ -1,6 +1,5 @@
-res://scenes/game.tscn
-res://scenes/environment/water_shader.gdshader
 res://player/player.tscn
-res://global/game_event.gd
-res://scenes/game/camera.gd
+res://scenes/environment/water_shader.gdshader
 res://player/player.gd
+res://scenes/game.tscn
+res://scenes/game/camera.gd

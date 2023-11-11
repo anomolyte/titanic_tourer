@@ -2,7 +2,7 @@ extends Camera2D
 
 const FOLLOW_SPEED = 9
 const MIN_HEIGHT = 270
-const MAX_HEIGHT = 750
+const MAX_HEIGHT = 1450 #750
 
 var target_position = global_position
 
