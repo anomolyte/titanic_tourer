@@ -5,6 +5,11 @@ extends Area2D
 const ACCELERATION = 40
 const DRAG = 10
 
+const MAX_PLAYER_HEIGHT = 1010
+const MIN_PLAYER_HEIGHT = 235
+const MAX_PLAYER_WIDTH = 946
+const MIN_PLAYER_WIDTH = 13
+
 var velocity = Vector2(0,0)
 
 
@@ -15,6 +20,11 @@ func _physics_process(delta):
 	
 	process_player_input()
 	player_movement()
+	
+	global_position.y = clamp(global_position.y, MIN_PLAYER_HEIGHT, MAX_PLAYER_HEIGHT)
+	global_position.x = clamp(global_position.x, MIN_PLAYER_WIDTH, MAX_PLAYER_WIDTH)
+	
+	GameEvent.emit_signal("camera_follow_player", global_position.y)
 
 
 
