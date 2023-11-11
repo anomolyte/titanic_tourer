@@ -1,5 +1,7 @@
-MeshInstance2D
+Camera2D
 Node2D
+GPUParticles2D
+MeshInstance2D
 Sprite2D
 CollisionShape2D
 AnimatedSprite2D

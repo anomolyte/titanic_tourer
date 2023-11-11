@@ -1,9 +1,11 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1699634294
+::res://::1699724462
 icon.svg::CompressedTexture2D::5513293346966876813::1699579998::1699580008::1::::<><>::
-::res://player/::1699634294
-player.tscn::PackedScene::7489308114224053561::1699581026::0::1::::<><>::
+::res://player/::1699657166
+player.gd::GDScript::-1::1699641241::0::1::::<>Area2D<>::
+player.tscn::PackedScene::7489308114224053561::1699657166::0::1::::<><>::uid://cbj8rgoy1s3ot::::res://player/titan_sub.png<>res://player/player.gd
 titan_sub.png::CompressedTexture2D::4863643967961746959::1699634279::1699634294::1::::<><>::
-::res://scenes/::1699581055
-game.tscn::PackedScene::5622876351677142963::1699581055::0::1::::<><>::
-::res://scenes/environment/::1699634294
+::res://scenes/::1699657134
+game.tscn::PackedScene::5622876351677142963::1699657134::0::1::::<><>::uid://dex42s4rxu2ob::::res://player/player.tscn<>res://scenes/environment/water_shader.gdshader
+::res://scenes/environment/::1699662346
+water_shader.gdshader::Shader::-1::1699662346::0::1::::<><>::
