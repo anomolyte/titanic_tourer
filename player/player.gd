@@ -10,6 +10,11 @@ const MIN_PLAYER_HEIGHT = 235
 const MAX_PLAYER_WIDTH = 946
 const MIN_PLAYER_WIDTH = 13
 
+const TitanDebris = preload("res://debris/debris.tscn")
+const DEBRIS_COUNT = 5
+
+const DeathSound = preload("res://audio/underwater_thud_fx.wav")
+
 var velocity = Vector2(0,0)
 
 
@@ -49,6 +54,10 @@ func process_player_input():
 	velocity.x = Input.get_axis("move_left", "move_right")
 	
 	velocity.normalized()
+	
+	if Input.is_action_just_pressed("pop"):
+		spawn_player_debris()
+		death()
 
 func face_input_direction():
 	if velocity.x > 0:
@@ -59,3 +68,18 @@ func face_input_direction():
 
 func player_movement():
 	global_position += velocity * ACCELERATION * get_physics_process_delta_time()
+
+
+func spawn_player_debris():
+	for i in range(DEBRIS_COUNT):
+		var debris_instance = TitanDebris.instantiate()
+		debris_instance.hframes = DEBRIS_COUNT
+		debris_instance.frame = i
+		
+		get_tree().current_scene.add_child(debris_instance)
+		debris_instance.global_position = global_position
+		
+
+func death():
+	SoundManager.play_sound(DeathSound)
+	queue_free()

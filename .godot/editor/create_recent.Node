@@ -1,4 +1,6 @@
+AnimationPlayer
 Sprite2D
+AudioStreamPlayer
 Camera2D
 Node2D
 GPUParticles2D
