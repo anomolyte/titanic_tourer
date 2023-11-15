@@ -1,8 +1,5 @@
 res://scenes/game.tscn
 res://scenes/environment/water_shader.gdshader
-res://global/sound_manager/sound.gd
-res://global/sound_manager/sound_manager.gd
 res://player/player.tscn
-res://player/player.gd
-res://debris/debris.gd
 res://debris/debris.tscn
+res://player/player.gd

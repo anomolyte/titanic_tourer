@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmd07mrnl05kp"]
+[gd_scene load_steps=13 format=3 uid="uid://cmd07mrnl05kp"]
 
 [ext_resource type="PackedScene" uid="uid://dex42s4rxu2ob" path="res://player/player.tscn" id="1_bdfjf"]
 [ext_resource type="Script" path="res://scenes/game/camera.gd" id="1_wvq00"]
 [ext_resource type="Shader" path="res://scenes/environment/water_shader.gdshader" id="2_xfp7b"]
 [ext_resource type="Texture2D" uid="uid://83umcs14t1y7" path="res://scenes/environment/shipwreck_ground/titanic_wreck.png" id="4_lng1w"]
-[ext_resource type="AudioStream" uid="uid://bn2sogbdytxmh" path="res://audio/underwater_fx.wav" id="5_yd5qu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2kl2y"]
 shader = ExtResource("2_xfp7b")
@@ -25,7 +24,7 @@ gradient = SubResource("Gradient_m8443")
 fill_to = Vector2(0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_dfnhm"]
-size = Vector2(1000, 5)
+size = Vector2(1000, 8)
 subdivide_width = 12
 subdivide_depth = 2
 
@@ -61,7 +60,7 @@ mesh = SubResource("QuadMesh_e08hp")
 texture = SubResource("GradientTexture2D_40o7d")
 
 [node name="ocean surface" type="MeshInstance2D" parent="Environment"]
-modulate = Color(0.278431, 0.486275, 0.517647, 1)
+modulate = Color(0.278431, 0.486275, 0.517647, 0.862745)
 z_index = 5
 material = SubResource("ShaderMaterial_2kl2y")
 position = Vector2(480, 232)
@@ -79,8 +78,3 @@ texture = SubResource("GradientTexture2D_b621d")
 modulate = Color(0.407843, 0.407843, 0.407843, 1)
 position = Vector2(480, 1642)
 texture = ExtResource("4_lng1w")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_yd5qu")
-volume_db = -10.0
-autoplay = true

@@ -1,12 +1,14 @@
 extends Area2D
 
 @onready var sprite = $Sprite2D
+@onready var bubbles = $GPUParticles2D
+@onready var audio_stream_player = $AudioStreamPlayer
 
 const ACCELERATION = 40
 const ROTATION_STRENGTH = 15
 
 const MAX_PLAYER_HEIGHT = 1700
-const MIN_PLAYER_HEIGHT = 235
+const MIN_PLAYER_HEIGHT = 230
 const MAX_PLAYER_WIDTH = 946
 const MIN_PLAYER_WIDTH = 13
 
@@ -14,12 +16,19 @@ const TitanDebris = preload("res://debris/debris.tscn")
 const DEBRIS_COUNT = 5
 
 const DeathSound = preload("res://audio/underwater_thud_fx.wav")
+const SubmergedSound = preload("res://audio/underwater_fx.wav")
+const SurfacedSound = preload("res://audio/baltic_sea_waves.ogg")
 
 var velocity = Vector2(0,0)
+var is_surfaced = true
+
+
+
 
 
 func _process(delta):
 	face_input_direction()
+	check_if_surfaced()
 
 func _physics_process(delta):
 	
@@ -31,6 +40,7 @@ func _physics_process(delta):
 	global_position.x = clamp(global_position.x, MIN_PLAYER_WIDTH, MAX_PLAYER_WIDTH)
 	
 	GameEvent.emit_signal("camera_follow_player", global_position.y)
+
 
 
 
@@ -78,7 +88,16 @@ func spawn_player_debris():
 		
 		get_tree().current_scene.add_child(debris_instance)
 		debris_instance.global_position = global_position
-		
+
+func check_if_surfaced():
+	if global_position.y < MIN_PLAYER_HEIGHT + 5 && is_surfaced:
+		bubbles.emitting = false
+		audio_stream_player.stream = SurfacedSound
+		is_surfaced = true
+	else:
+		bubbles.emitting = true
+		audio_stream_player.stream = SubmergedSound
+		is_surfaced = false
 
 func death():
 	SoundManager.play_sound(DeathSound)
