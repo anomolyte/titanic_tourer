@@ -1,5 +1,7 @@
 extends Sprite2D
 
+@onready var particles = $GPUParticles2D
+
 var velocity = Vector2(1, 0)
 var move_speed = 180.0
 var rotation_speed = 50.0
@@ -18,3 +20,7 @@ func _physics_process(delta):
 	
 	move_speed = lerp(move_speed, 0.0, 6 * delta)
 	rotation_speed = lerp(rotation_speed, 0.0, 3 * delta)
+
+
+func _on_timer_timeout():
+	particles.emitting = false

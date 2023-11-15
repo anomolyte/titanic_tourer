@@ -2,6 +2,7 @@ extends Area2D
 
 var velocity = Vector2(0,0)
 var is_surfaced = true
+var crew_count = 5
 
 enum depth_states {DEFAULT, SUBMERGED, SURFACED}
 var depth_state = depth_states.DEFAULT
@@ -25,6 +26,9 @@ const DeathSound = preload("res://audio/underwater_thud_fx.wav")
 
 
 
+func _ready():
+	GameEvent.emit_signal("crew_count", crew_count)
+	print("reviewcount")
 
 
 
@@ -78,6 +82,8 @@ func process_player_input():
 	if Input.is_action_just_pressed("pop"):
 		spawn_player_debris()
 		death()
+		crew_count = 0
+		GameEvent.emit_signal("crew_count", crew_count)
 
 func face_input_direction():
 	if velocity.x > 0:
