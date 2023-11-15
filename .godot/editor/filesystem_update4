@@ -1,5 +1,5 @@
-res://scenes/game.tscn
-res://scenes/environment/water_shader.gdshader
 res://player/player.tscn
-res://debris/debris.tscn
+res://scenes/environment/water_shader.gdshader
 res://player/player.gd
+res://scenes/game.tscn
+res://debris/debris.tscn

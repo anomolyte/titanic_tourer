@@ -1,8 +1,10 @@
 extends Area2D
 
-@onready var sprite = $Sprite2D
-@onready var bubbles = $GPUParticles2D
-@onready var audio_stream_player = $AudioStreamPlayer
+var velocity = Vector2(0,0)
+var is_surfaced = true
+
+enum depth_states {DEFAULT, SUBMERGED, SURFACED}
+var depth_state = depth_states.DEFAULT
 
 const ACCELERATION = 40
 const ROTATION_STRENGTH = 15
@@ -19,8 +21,9 @@ const DeathSound = preload("res://audio/underwater_thud_fx.wav")
 const SubmergedSound = preload("res://audio/underwater_fx.wav")
 const SurfacedSound = preload("res://audio/baltic_sea_waves.ogg")
 
-var velocity = Vector2(0,0)
-var is_surfaced = true
+@onready var sprite = $Sprite2D
+@onready var bubbles = $GPUParticles2D
+@onready var audio_stream_player = $AudioStreamPlayer
 
 
 
@@ -28,7 +31,16 @@ var is_surfaced = true
 
 func _process(delta):
 	face_input_direction()
-	check_if_surfaced()
+	check_depth()
+	if depth_state == depth_states.SURFACED:
+		bubbles.emitting = false
+	elif depth_state == depth_states.SUBMERGED:
+		bubbles.emitting = true
+	
+	depth_state = depth_states.DEFAULT
+	
+	
+	#check_if_surfaced()
 
 func _physics_process(delta):
 	
@@ -89,15 +101,28 @@ func spawn_player_debris():
 		get_tree().current_scene.add_child(debris_instance)
 		debris_instance.global_position = global_position
 
-func check_if_surfaced():
-	if global_position.y < MIN_PLAYER_HEIGHT + 5 && is_surfaced:
-		bubbles.emitting = false
+func check_depth():
+	if global_position.y < MIN_PLAYER_HEIGHT + 5:
+		depth_state = depth_states.SURFACED
 		audio_stream_player.stream = SurfacedSound
-		is_surfaced = true
 	else:
-		bubbles.emitting = true
+		depth_state = depth_states.SUBMERGED
 		audio_stream_player.stream = SubmergedSound
-		is_surfaced = false
+
+
+#func check_if_surfaced():
+#	if global_position.y < MIN_PLAYER_HEIGHT + 5:
+#		depth_state = depth_states.SURFACED
+#	else:
+#		depth_state = depth_states.SUBMERGED
+#
+#	if depth_state == depth_states.SURFACED:
+#		bubbles.emitting = false
+#		audio_stream_player.stream = SurfacedSound
+#	else:
+#		bubbles.emitting = true
+#		audio_stream_player.stream = SubmergedSound
+
 
 func death():
 	SoundManager.play_sound(DeathSound)
