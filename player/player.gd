@@ -13,17 +13,16 @@ const MAX_PLAYER_HEIGHT = 1700
 const MIN_PLAYER_HEIGHT = 230
 const MAX_PLAYER_WIDTH = 946
 const MIN_PLAYER_WIDTH = 13
+const SURFACE_DEPTH = MIN_PLAYER_HEIGHT + 5
 
 const TitanDebris = preload("res://debris/debris.tscn")
 const DEBRIS_COUNT = 5
 
 const DeathSound = preload("res://audio/underwater_thud_fx.wav")
-const SubmergedSound = preload("res://audio/underwater_fx.wav")
-const SurfacedSound = preload("res://audio/baltic_sea_waves.ogg")
 
 @onready var sprite = $Sprite2D
 @onready var bubbles = $GPUParticles2D
-@onready var audio_stream_player = $AudioStreamPlayer
+
 
 
 
@@ -38,9 +37,8 @@ func _process(delta):
 		bubbles.emitting = true
 	
 	depth_state = depth_states.DEFAULT
-	
-	
-	#check_if_surfaced()
+
+
 
 func _physics_process(delta):
 	
@@ -101,13 +99,13 @@ func spawn_player_debris():
 		get_tree().current_scene.add_child(debris_instance)
 		debris_instance.global_position = global_position
 
-func check_depth():
-	if global_position.y < MIN_PLAYER_HEIGHT + 5:
+func check_depth(): # this needs fixing, currently brokensssd
+	if global_position.y < SURFACE_DEPTH:
 		depth_state = depth_states.SURFACED
-		audio_stream_player.stream = SurfacedSound
 	else:
 		depth_state = depth_states.SUBMERGED
-		audio_stream_player.stream = SubmergedSound
+
+
 
 
 #func check_if_surfaced():

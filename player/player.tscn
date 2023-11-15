@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dex42s4rxu2ob"]
+[gd_scene load_steps=5 format=3 uid="uid://dex42s4rxu2ob"]
 
 [ext_resource type="Texture2D" uid="uid://cbj8rgoy1s3ot" path="res://player/titan_sub.png" id="1_jbgqd"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_p7vmu"]
-[ext_resource type="AudioStream" uid="uid://bn2sogbdytxmh" path="res://audio/underwater_fx.wav" id="3_meko5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pgef2"]
 size = Vector2(21, 6)
@@ -33,8 +32,3 @@ amount = 16
 process_material = SubResource("ParticleProcessMaterial_xfe50")
 explosiveness = 0.33
 randomness = 0.83
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_meko5")
-volume_db = -10.0
-autoplay = true
