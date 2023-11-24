@@ -7,6 +7,8 @@ var crew_count = 5
 enum depth_states {DEFAULT, SUBMERGED, SURFACED}
 var depth_state = depth_states.DEFAULT
 
+var time_until_death = randf_range(10.0, 120.0) # time until you pop
+
 const ACCELERATION = 40
 const ROTATION_STRENGTH = 15
 
@@ -23,12 +25,16 @@ const DeathSound = preload("res://audio/underwater_thud_fx.wav")
 
 @onready var sprite = $Sprite2D
 @onready var bubbles = $GPUParticles2D
+@onready var random_death_timer: Timer = $RandomDeathTimer
 
 
 
 func _ready():
 	GameEvent.emit_signal("crew_count", crew_count)
 	print("reviewcount")
+	
+	random_death_timer.wait_time = time_until_death
+	random_death_timer.start()
 
 
 
@@ -53,7 +59,8 @@ func _physics_process(delta):
 	global_position.y = clamp(global_position.y, MIN_PLAYER_HEIGHT, MAX_PLAYER_HEIGHT)
 	global_position.x = clamp(global_position.x, MIN_PLAYER_WIDTH, MAX_PLAYER_WIDTH)
 	
-	GameEvent.emit_signal("camera_follow_player", global_position.y)
+	#GameEvent.emit_signal("camera_follow_player", global_position.y)
+	GameEvent.camera_follow_player.emit(global_position.y) # much better, less prone to error
 
 
 
@@ -80,10 +87,8 @@ func process_player_input():
 	velocity.normalized()
 	
 	if Input.is_action_just_pressed("pop"):
-		spawn_player_debris()
-		death()
-		crew_count = 0
-		GameEvent.emit_signal("crew_count", crew_count)
+		pass
+		#death() # for debug purposes
 
 func face_input_direction():
 	if velocity.x > 0:
@@ -129,5 +134,14 @@ func check_depth(): # this needs fixing, currently brokensssd
 
 
 func death():
+	spawn_player_debris()
+	crew_count = 0
+	GameEvent.crew_count.emit(crew_count)
+	#GameEvent.emit_signal("crew_count", crew_count) # <- bad, no
 	SoundManager.play_sound(DeathSound)
 	queue_free()
+
+
+
+func _on_random_death_timeout() -> void:
+	death()

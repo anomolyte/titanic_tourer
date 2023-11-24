@@ -32,3 +32,8 @@ amount = 16
 process_material = SubResource("ParticleProcessMaterial_xfe50")
 explosiveness = 0.33
 randomness = 0.83
+
+[node name="RandomDeathTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="RandomDeathTimer" to="." method="_on_random_death_timeout"]
